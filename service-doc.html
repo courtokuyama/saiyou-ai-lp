@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>きづけばAI採用 サービス資料</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0b1c35;--navy-2:#122444;--navy-3:#1a3056;
+  --accent:#0d9488;--accent-hi:#2dd4bf;--accent-lt:#e6f7f5;
+  --gold:#0f766e;--gold-lt:#5eead4;
+  --red:#ef4444;--red-lt:#fef2f2;--green:#22c55e;--green-lt:#f0fdf4;
+  --orange:#f59e0b;
+  --gray-bg:#f8fafc;--gray-line:#e2e8f0;--gray-200:#e5e7eb;
+  --text:#0f172a;--sub:#475569;--muted:#94a3b8;--white:#fff;
+}
+body{font-family:'Noto Sans JP','DM Sans',sans-serif;color:var(--text);background:#e2e8f0;line-height:1.6}
+
+/* ── SLIDE: flexbox で垂直分散 ── */
+.slide{
+  width:1280px;height:720px;background:var(--white);
+  margin:24px auto;position:relative;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.08);page-break-after:always;
+  padding:56px 80px 48px;
+  display:flex;flex-direction:column;
+}
+.slide-dark{background:var(--navy);color:var(--white)}
+
+.s-body{flex:1;display:flex;flex-direction:column;justify-content:center}
+.s-body.top{justify-content:flex-start}
+.s-body.spread{justify-content:center;gap:14px}
+.s-body.spread-even{justify-content:center;gap:16px}
+
+/* ── FOOTER ── */
+.sf{display:flex;justify-content:space-between;align-items:center;padding-top:12px;flex-shrink:0}
+.sf .logo-sm{font-family:'Noto Serif JP',serif;font-size:12px;font-weight:700;color:var(--accent)}
+.sf .logo-sm em{font-style:normal;color:var(--gold)}
+.sf .pg{font-size:10px;color:var(--muted);font-family:'DM Sans',sans-serif}
+.slide-dark .sf .logo-sm{color:var(--accent-hi)}
+.slide-dark .sf .pg{color:rgba(255,255,255,.3)}
+
+/* ── HEADER ── */
+.s-head{flex-shrink:0;margin-bottom:auto}
+.tag{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.18em;font-family:'DM Sans',sans-serif;margin-bottom:6px;display:block}
+.slide-dark .tag{color:var(--accent-hi)}
+.stitle{font-size:30px;font-weight:900;line-height:1.35;margin-bottom:6px}
+.slide-dark .stitle{color:var(--white)}
+.ssub{font-size:13px;color:var(--sub);line-height:1.7}
+.slide-dark .ssub{color:rgba(255,255,255,.55)}
+
+/* ── COVER ── */
+.cover-bg{position:absolute;inset:0;z-index:0}
+.cover-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.22)}
+.cover-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center}
+.cover-logo{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:700;color:var(--white);margin-bottom:24px}
+.cover-logo em{font-style:normal;color:var(--gold-lt)}
+.cover-tag{font-size:10px;font-weight:600;color:var(--accent-hi);letter-spacing:.22em;margin-bottom:14px}
+.cover-title{font-size:44px;font-weight:900;color:var(--white);line-height:1.3;margin-bottom:18px}
+.cover-desc{font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;max-width:520px}
+.cover-stats{position:absolute;bottom:56px;right:0;display:flex;gap:14px;z-index:1}
+.cover-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 22px;text-align:center;min-width:120px}
+.cover-stat strong{font-size:22px;font-weight:900;color:var(--white);display:block;font-family:'DM Sans',sans-serif}
+.cover-stat span{font-size:10px;color:rgba(255,255,255,.4)}
+
+/* ── MARKET ── */
+.market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.market-card{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:10px;padding:20px 16px;text-align:center}
+.market-card .n{font-size:38px;font-weight:900;color:var(--accent);font-family:'DM Sans','Noto Sans JP',sans-serif;line-height:1.1}
+.market-card .n em{font-style:normal;font-size:16px}
+.market-card .l{font-size:11px;color:var(--sub);margin-top:6px;line-height:1.4}
+.market-card .src{font-size:9px;color:var(--muted);margin-top:4px}
+
+/* ── PROBLEMS ── */
+.prob-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.prob-card{background:var(--red-lt);border:1px solid #fecaca;border-radius:8px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start}
+.prob-num{width:26px;height:26px;border-radius:50%;background:var(--red);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.prob-card h4{font-size:14px;font-weight:700;line-height:1.35;margin-bottom:3px}
+.prob-card p{font-size:11px;color:var(--sub);line-height:1.55}
+.prob-bottom{background:var(--navy);border-radius:8px;padding:14px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.prob-bottom .n{font-size:26px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif}
+.prob-bottom .l{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* ── ABOUT ── */
+.about-2col{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.about-title{font-size:24px;font-weight:900;line-height:1.4;margin-bottom:12px}
+.about-text{font-size:13px;color:var(--sub);line-height:1.85;margin-bottom:16px}
+.about-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.about-badge{font-size:10px;font-weight:600;padding:4px 12px;border-radius:16px;background:var(--accent-lt);color:var(--accent)}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.about-feat{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:6px;padding:10px 12px}
+.about-feat h5{font-size:12px;font-weight:700;margin-bottom:2px}
+.about-feat p{font-size:10px;color:var(--sub);line-height:1.5}
+.about-img{width:100%;border-radius:10px;object-fit:cover}
+
+/* ── BA ── */
+.ba-grid{display:grid;grid-template-columns:1fr 36px 1fr;gap:0;align-items:stretch}
+.ba-box{border-radius:10px;padding:22px 20px}
+.ba-before{background:var(--red-lt);border:1px solid #fecaca}
+.ba-after{background:var(--accent-lt);border:1px solid #99f6e4}
+.ba-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--muted)}
+.ba-tag{font-size:9px;font-weight:700;letter-spacing:.12em;margin-bottom:8px}
+.ba-tag-r{color:var(--red)}.ba-tag-b{color:var(--accent)}
+.ba-title{font-size:14px;font-weight:700;margin-bottom:10px}
+.ba-list{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--sub)}
+.ba-list li{display:flex;align-items:flex-start;gap:6px;line-height:1.45}
+.ba-x{color:var(--red);font-weight:700;flex-shrink:0}
+.ba-o{color:var(--accent);font-weight:700;flex-shrink:0}
+.ba-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ba-stat{background:var(--accent-lt);border-radius:8px;padding:14px;text-align:center}
+.ba-stat .n{font-size:24px;font-weight:900;color:var(--accent);font-family:'DM Sans',sans-serif;line-height:1.1}
+.ba-stat .l{font-size:10px;color:var(--sub);margin-top:2px}
+
+/* ── PHASE ── */
+.phase-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.phase-card{border:1px solid var(--gray-line);border-radius:10px;padding:22px 20px;background:var(--white)}
+.phase-tag{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.12em;font-family:'DM Sans',sans-serif;margin-bottom:6px;display:block}
+.phase-num{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:4px}
+.phase-name{font-size:16px;font-weight:700;margin-bottom:5px}
+.phase-desc{font-size:11px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:3px}
+.phase-items li{font-size:10px;color:var(--sub);display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.phase-items li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0;font-size:9px}
+.phase-bottom{background:var(--navy);border-radius:10px;padding:16px 28px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center}
+.phase-bottom strong{font-size:17px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;display:block}
+.phase-bottom span{font-size:9px;color:rgba(255,255,255,.4)}
+
+/* ── PHASE DETAIL ── */
+.pd-2col{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start}
+.pd-tag{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.12em;font-family:'DM Sans',sans-serif;margin-bottom:6px}
+.pd-title{font-size:22px;font-weight:900;line-height:1.35;margin-bottom:10px}
+.pd-text{font-size:12px;color:var(--sub);line-height:1.75;margin-bottom:12px}
+.pd-checks{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.pd-checks li{font-size:12px;color:var(--sub);display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+.pd-checks li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+.pd-note{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:6px;padding:10px 14px;font-size:11px;color:var(--sub);line-height:1.6}
+.pd-note strong{color:var(--text)}
+.pd-right{display:flex;flex-direction:column;gap:10px}
+.pd-img{width:100%;border-radius:10px;object-fit:cover;height:200px}
+.pd-side-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pd-side-card{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:6px;padding:12px;text-align:center}
+.pd-side-card .n{font-size:20px;font-weight:900;color:var(--accent);font-family:'DM Sans',sans-serif}
+.pd-side-card .l{font-size:10px;color:var(--sub);margin-top:2px}
+
+/* ── COMPARISON ── */
+.cmp-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+.cmp-table th{padding:10px 10px;font-weight:600;text-align:center}
+.cmp-table th:first-child{text-align:left;color:var(--muted);font-size:11px}
+.cmp-table .th-other{background:var(--gray-bg);color:var(--sub);border:1px solid var(--gray-line);border-bottom:none}
+.cmp-table .th-ours{background:var(--accent);color:var(--white);border-radius:6px 6px 0 0;font-size:13px}
+.cmp-table td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--gray-line);font-size:11px}
+.cmp-table td:first-child{text-align:left;color:var(--sub);font-size:12px}
+.cmp-table .td-other{background:var(--gray-bg);color:var(--sub);border-left:1px solid var(--gray-line);border-right:1px solid var(--gray-line)}
+.cmp-table .td-ours{background:rgba(13,148,136,.08);color:var(--accent);font-weight:700;border-left:1px solid rgba(13,148,136,.2);border-right:1px solid rgba(13,148,136,.2)}
+.cmp-table tbody tr:last-child .td-ours{border-radius:0 0 6px 6px}
+.cmp-note{background:var(--accent-lt);border-radius:8px;padding:14px 20px;font-size:13px;color:var(--accent);font-weight:600;text-align:center}
+
+/* ── PRICING ── */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pr-card{border:1px solid var(--gray-line);border-radius:10px;padding:22px 18px;position:relative}
+.pr-card.feat{border-color:var(--accent);border-width:2px}
+.pr-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--white);font-size:9px;font-weight:700;padding:3px 14px;border-radius:20px;white-space:nowrap}
+.pr-name{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:8px}
+.pr-price{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1;margin-bottom:3px}
+.pr-price span{font-size:13px;font-weight:400;color:var(--muted)}
+.pr-note{font-size:10px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.pr-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.pr-list li{font-size:11px;color:var(--sub);display:flex;align-items:flex-start;gap:5px;line-height:1.45}
+.pr-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0;font-size:10px}
+.pr-target{font-size:10px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--gray-line);line-height:1.5}
+
+/* ── COST SIM ── */
+.sim-table{width:100%;border-collapse:collapse}
+.sim-table th{background:var(--navy);color:var(--white);padding:10px 14px;font-size:11px;font-weight:600;text-align:center}
+.sim-table th:first-child{text-align:left}
+.sim-table td{padding:10px 14px;font-size:12px;text-align:center;border-bottom:1px solid var(--gray-line)}
+.sim-table td:first-child{text-align:left;font-weight:500}
+.sim-table .highlight{background:var(--accent-lt);font-weight:700;color:var(--accent)}
+.sim-table .total{background:var(--accent);color:var(--white);font-weight:900;font-size:13px}
+
+/* ── FAQ ── */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.faq-item{border:1px solid var(--gray-line);border-radius:8px;padding:14px 16px}
+.faq-q{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.35}
+.faq-a{font-size:10px;color:var(--sub);line-height:1.6}
+
+/* ── SECURITY ── */
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sec-card{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:10px;padding:18px;text-align:center}
+.sec-icon{font-size:24px;margin-bottom:6px;display:block}
+.sec-card h4{font-size:12px;font-weight:700;margin-bottom:4px}
+.sec-card p{font-size:10px;color:var(--sub);line-height:1.55}
+
+/* ── FLOW ── */
+.flow-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.flow-card{text-align:center;background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:10px;padding:18px 14px}
+.flow-num{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;margin:0 auto 10px}
+.flow-card h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.flow-card p{font-size:10px;color:var(--sub);line-height:1.5}
+
+/* ── WHY ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.why-card{background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:10px;padding:22px 18px}
+.why-num{font-family:'DM Sans',sans-serif;font-size:30px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:6px}
+.why-card h4{font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.35}
+.why-card p{font-size:11px;color:var(--sub);line-height:1.6}
+
+/* ── DELIVERABLES ── */
+.del-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.del-card{border:1px solid var(--gray-line);border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.del-icon{width:32px;height:32px;border-radius:8px;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.del-card h4{font-size:13px;font-weight:700;margin-bottom:2px}
+.del-card p{font-size:10px;color:var(--sub);line-height:1.5}
+
+@media print{
+  body{background:var(--white)}
+  .slide{margin:0;box-shadow:none;page-break-after:always;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== SLIDE 1: COVER ===== -->
+<div class="slide slide-dark" style="padding:0">
+  <div class="cover-bg"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=80" alt=""></div>
+  <div class="cover-inner" style="padding:56px 80px">
+    <div class="cover-logo">きづけば<em>AI</em>採用</div>
+    <div class="cover-tag">SERVICE GUIDE — 採用BPO × AI導入</div>
+    <div class="cover-title">気がつけば、<br>採用にAIが効いていた。</div>
+    <div class="cover-desc">採用業務を丸投げしている3ヶ月の間に、裏側でAI採用エージェントを構築。<br>預けたのは採用。戻ってきたのは、AI採用基盤。<br>中小企業に特化した、BPOとAI導入を同時に実現するサービスです。</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><strong>¥148,000〜</strong><span>月額BPO費用</span></div>
+      <div class="cover-stat"><strong>3ヶ月</strong><span>AI化完了まで</span></div>
+      <div class="cover-stat"><strong>50%</strong><span>コスト削減率</span></div>
+      <div class="cover-stat"><strong>0円</strong><span>初期費用・違約金</span></div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:20px;left:80px;font-size:9px;color:rgba(255,255,255,.2)">CONFIDENTIAL — 本資料の無断転載・配布を禁じます</div>
+  <div style="position:absolute;bottom:20px;right:80px;font-size:9px;color:rgba(255,255,255,.2)">株式会社BEWIBE</div>
+</div>
+
+<!-- ===== SLIDE 2: TOC ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">CONTENTS</span><div class="stitle">目次</div><p class="ssub">本資料では、きづけばAI採用のサービス概要・料金・導入プロセスを詳しくご説明します。</p></div>
+  <div class="s-body spread" style="padding:24px 0">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 48px">
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</div><div style="font-size:13px;font-weight:500;flex:1">市場背景 — 中小企業の採用課題</div><div style="font-size:11px;color:var(--muted)">03</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">7</div><div style="font-size:13px;font-weight:500;flex:1">Phase 02 — AI構築の詳細</div><div style="font-size:11px;color:var(--muted)">09</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</div><div style="font-size:13px;font-weight:500;flex:1">5つの課題</div><div style="font-size:11px;color:var(--muted)">04</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">8</div><div style="font-size:13px;font-weight:500;flex:1">Phase 03 — 納品と選択肢</div><div style="font-size:11px;color:var(--muted)">10</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</div><div style="font-size:13px;font-weight:500;flex:1">きづけばAI採用とは</div><div style="font-size:11px;color:var(--muted)">05</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">9</div><div style="font-size:13px;font-weight:500;flex:1">他サービスとの比較</div><div style="font-size:11px;color:var(--muted)">11</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">4</div><div style="font-size:13px;font-weight:500;flex:1">導入前 vs 導入後</div><div style="font-size:11px;color:var(--muted)">06</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">10</div><div style="font-size:13px;font-weight:500;flex:1">料金プラン</div><div style="font-size:11px;color:var(--muted)">12</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">5</div><div style="font-size:13px;font-weight:500;flex:1">3つのフェーズ — 全体像</div><div style="font-size:11px;color:var(--muted)">07</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">11</div><div style="font-size:13px;font-weight:500;flex:1">コストシミュレーション</div><div style="font-size:11px;color:var(--muted)">13</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">6</div><div style="font-size:13px;font-weight:500;flex:1">Phase 01 — 採用BPOの詳細</div><div style="font-size:11px;color:var(--muted)">08</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">12</div><div style="font-size:13px;font-weight:500;flex:1">選ばれる理由</div><div style="font-size:11px;color:var(--muted)">14</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">13</div><div style="font-size:13px;font-weight:500;flex:1">活用シーン（3パターン）</div><div style="font-size:11px;color:var(--muted)">15-17</div></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray-line)"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">14</div><div style="font-size:13px;font-weight:500;flex:1">導入の流れ・FAQ・セキュリティ</div><div style="font-size:11px;color:var(--muted)">18-20</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">02</span></div>
+</div>
+
+<!-- ===== SLIDE 3: MARKET ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">MARKET</span><div class="stitle">中小企業の採用を取り巻く現状</div><p class="ssub">人手不足・採用コスト高騰・業務負荷 — 中小企業の採用活動はかつてないプレッシャーにさらされています。</p></div>
+  <div class="s-body spread" style="padding:20px 0 0;gap:16px">
+    <div class="market-grid">
+      <div class="market-card"><div class="n">34<em>%</em></div><div class="l">中小企業が<br>「採用に人手が足りない」</div><div class="src">中小企業庁 2024年調査</div></div>
+      <div class="market-card"><div class="n">103<em>万円</em></div><div class="l">中途採用1名あたりの<br>平均採用コスト</div><div class="src">リクルート 2024年</div></div>
+      <div class="market-card"><div class="n">70<em>%</em></div><div class="l">採用工数の大半が<br>選考・日程調整に消耗</div><div class="src">HR総研 2024年レポート</div></div>
+      <div class="market-card"><div class="n">3<em>ヶ月</em></div><div class="l">AI採用基盤を<br>構築するのに必要な期間</div><div class="src">BEWIBE実績</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:var(--red-lt);border:1px solid #fecaca;border-radius:10px;padding:20px 24px">
+        <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px">深刻化する「中小企業の採用難」</div>
+        <div style="font-size:12px;color:var(--sub);line-height:1.75">有効求人倍率は依然高水準。中小企業では採用担当の専任者がおらず、社長やマネージャーが兼任で対応。求人原稿の作成・応募者対応・面談調整に追われ、本業に集中できない状況が慢性化しています。</div>
+      </div>
+      <div style="background:var(--accent-lt);border:1px solid #99f6e4;border-radius:10px;padding:20px 24px">
+        <div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px">AI×BPOが最適解である理由</div>
+        <div style="font-size:12px;color:var(--sub);line-height:1.75">AI単体では「導入する余裕がない」、RPO単体では「いつまでもコストが下がらない」。きづけばAI採用は、BPOで即座に採用負担をゼロにしながら、同時にAI化を完了。3ヶ月後にはコスト半減を実現する、中小企業唯一の選択肢です。</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">03</span></div>
+</div>
+
+<!-- ===== SLIDE 4: PROBLEMS ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">PROBLEM</span><div class="stitle">こんな状況、ありませんか？</div><p class="ssub">一つでも当てはまれば、きづけばAI採用で解決できます。</p></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:12px">
+    <div class="prob-2col">
+      <div class="prob-card"><div class="prob-num">1</div><div><h4>社長・マネージャーが採用業務に追われている</h4><p>本業に集中したいのに、応募者対応・面談設定・求人管理で毎月20時間以上が消える。年間240時間 = 約30営業日分のロス。</p></div></div>
+      <div class="prob-card"><div class="prob-num">2</div><div><h4>求人媒体に掲載しても良い応募が来ない</h4><p>原稿の書き方が悪い、ターゲット設定が曖昧、媒体選定が不適切。掲載費だけが消えていく。</p></div></div>
+      <div class="prob-card"><div class="prob-num">3</div><div><h4>書類選考と日程調整だけで1日が終わる</h4><p>履歴書を1件ずつ確認、候補者とメールで日程の往復。採用工数の70%がこの単純作業に費やされている。</p></div></div>
+      <div class="prob-card"><div class="prob-num">4</div><div><h4>AIを使いたいが何から始めればいいかわからない</h4><p>AI採用ツールは高額で機能過多。導入コンサルは初期費用300〜500万が相場。PoCだけで半年かかるケースも。</p></div></div>
+    </div>
+    <div class="prob-card" style="width:100%"><div class="prob-num">5</div><div><h4>エージェントは高い、RPOは社内に何も残らない</h4><p>人材紹介は年収の30〜35%。RPOに出しても毎月コストが続くだけで、社内にノウハウ・仕組みが蓄積されない。</p></div></div>
+    <div class="prob-bottom">
+      <div><div class="n">34%</div><div class="l">採用に人手が足りない</div></div>
+      <div><div class="n">103万</div><div class="l">中途採用1名の平均コスト</div></div>
+      <div><div class="n">70%</div><div class="l">選考・日程調整に消耗</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">04</span></div>
+</div>
+
+<!-- ===== SLIDE 5: ABOUT ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">ABOUT</span><div class="stitle">きづけばAI採用とは</div></div>
+  <div class="s-body" style="padding:16px 0 0">
+    <div class="about-2col">
+      <div>
+        <div class="about-title">採用を丸投げしたら、<br>3ヶ月後にはAI化が完了。</div>
+        <div class="about-text">「きづけばAI採用」は、中小企業向けの採用BPO＋AI導入サービスです。ただのRPOでは終わりません。採用業務を丸投げしている3ヶ月の間に、裏側で御社専用のAI採用エージェントを構築。完成したら御社の資産として納品します。</div>
+        <div class="about-badges">
+          <span class="about-badge">初期費用なし</span><span class="about-badge">3ヶ月でAI化</span><span class="about-badge">違約金なし</span><span class="about-badge">NDA締結</span><span class="about-badge">既存媒体そのまま</span><span class="about-badge">中小企業特化</span>
+        </div>
+        <div class="about-features">
+          <div class="about-feat"><h5>BPO中にAI導入が完了</h5><p>採用を外注している間に裏側でAI構築。お客様の追加作業ゼロ。</p></div>
+          <div class="about-feat"><h5>時間が経つほどコスト減</h5><p>通常RPOは毎月同額。当サービスは3ヶ月後に約半額に。</p></div>
+          <div class="about-feat"><h5>AI採用エージェントが資産に</h5><p>構築したAI採用エージェントは御社に納品。買い取って自社資産に。</p></div>
+          <div class="about-feat"><h5>既存環境そのまま</h5><p>利用中の求人媒体・ATS・既存フローを変えずに導入可能。</p></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <img class="about-img" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80" alt="" style="height:210px">
+        <div style="background:var(--navy);border-radius:10px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">¥148,000〜</div><div style="font-size:9px;color:rgba(255,255,255,.4)">月額BPO費用</div></div>
+          <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">3ヶ月</div><div style="font-size:9px;color:rgba(255,255,255,.4)">AI化完了まで</div></div>
+          <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">50%</div><div style="font-size:9px;color:rgba(255,255,255,.4)">平均コスト削減率</div></div>
+          <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">0円</div><div style="font-size:9px;color:rgba(255,255,255,.4)">初期費用・違約金</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">05</span></div>
+</div>
+
+<!-- ===== SLIDE 6: BEFORE/AFTER ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">BEFORE / AFTER</span><div class="stitle">導入前と導入後の変化</div></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:14px">
+    <div class="ba-grid">
+      <div class="ba-box ba-before">
+        <div class="ba-tag ba-tag-r">BEFORE — 従来の採用体制</div>
+        <div class="ba-title">こんな状態が続いていませんか？</div>
+        <ul class="ba-list">
+          <li><span class="ba-x">&#10007;</span>社長が採用に月20時間以上を費やしている</li>
+          <li><span class="ba-x">&#10007;</span>求人を出しても応募が来ない・質が低い</li>
+          <li><span class="ba-x">&#10007;</span>書類選考・日程調整で1日が潰れる</li>
+          <li><span class="ba-x">&#10007;</span>エージェント紹介料が年収の35%と高すぎる</li>
+          <li><span class="ba-x">&#10007;</span>RPOに出しても社内にノウハウが残らない</li>
+          <li><span class="ba-x">&#10007;</span>AI導入を検討する時間も予算もない</li>
+        </ul>
+      </div>
+      <div class="ba-arrow">&rarr;</div>
+      <div class="ba-box ba-after">
+        <div class="ba-tag ba-tag-b">AFTER — きづけばAI採用を導入</div>
+        <div class="ba-title">3ヶ月後、こう変わります</div>
+        <ul class="ba-list">
+          <li><span class="ba-o">&#10003;</span>採用業務は完全に丸投げ → 本業に集中</li>
+          <li><span class="ba-o">&#10003;</span>AIが求人原稿を最適化 → 応募の質が向上</li>
+          <li><span class="ba-o">&#10003;</span>スクリーニング・日程調整をAIが自動化</li>
+          <li><span class="ba-o">&#10003;</span>3ヶ月後にBPOコストが約半額に</li>
+          <li><span class="ba-o">&#10003;</span>AI採用エージェントが会社の資産に</li>
+          <li><span class="ba-o">&#10003;</span>BPO中にAI導入が自動完了</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ba-stats">
+      <div class="ba-stat"><div class="n">50%</div><div class="l">コスト削減率</div></div>
+      <div class="ba-stat"><div class="n">3ヶ月</div><div class="l">AI導入完了まで</div></div>
+      <div class="ba-stat"><div class="n">0円</div><div class="l">初期費用</div></div>
+      <div class="ba-stat"><div class="n">0円</div><div class="l">違約金</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">06</span></div>
+</div>
+
+<!-- ===== SLIDE 7: SERVICE OVERVIEW ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">SERVICE</span><div class="stitle">3ヶ月で、丸投げからAI化へ</div><p class="ssub">ただのRPOでは終わりません。3つのフェーズで御社の採用をAIで自走させます。</p></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:14px">
+    <div class="phase-row">
+      <div class="phase-card"><span class="phase-tag">PHASE 01 — 月1〜3</span><div class="phase-num">01</div><div class="phase-name">採用BPO</div><div class="phase-desc">まずは採用業務をまるごと代行。要件を伝えるだけ。</div><ul class="phase-items"><li>求人媒体の選定・原稿作成・掲載運用</li><li>応募者のスクリーニング・書類選考</li><li>面談・面接の日程調整</li><li>候補者への連絡・フォロー対応</li><li>採用進捗レポートの作成・報告</li></ul></div>
+      <div class="phase-card" style="border-color:var(--accent);border-width:2px"><span class="phase-tag">PHASE 02 — 月1〜3（同時進行）</span><div class="phase-num">02</div><div class="phase-name">AI構築</div><div class="phase-desc">BPOと同時進行でAI採用エージェントを構築。追加作業ゼロ。</div><ul class="phase-items"><li>採用基準をAIが学習</li><li>履歴書の自動スクリーニングロジック構築</li><li>求人原稿の自動生成テンプレート構築</li><li>面談日程の自動調整フロー構築</li><li>採用データの分析・改善レポート自動化</li></ul></div>
+      <div class="phase-card"><span class="phase-tag">PHASE 03 — 月3末</span><div class="phase-num">03</div><div class="phase-name">納品</div><div class="phase-desc">完成したAI採用エージェントを御社の資産として納品。</div><ul class="phase-items"><li>AI採用エージェント一式を買い取り</li><li>業務マニュアル・運用ガイド付き</li><li>社内研修（オンライン）込み</li><li>導入後1ヶ月サポート</li><li>継続BPOへの切替もいつでも可</li></ul></div>
+    </div>
+    <div class="phase-bottom">
+      <div><strong>¥148,000〜</strong><span>月額BPO費用</span></div>
+      <div><strong>3ヶ月</strong><span>AI化完了まで</span></div>
+      <div><strong>¥78,000〜</strong><span>AI化後の継続BPO</span></div>
+      <div><strong>0円</strong><span>初期費用</span></div>
+      <div><strong>0円</strong><span>違約金</span></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">07</span></div>
+</div>
+
+<!-- ===== SLIDE 8: PHASE 01 ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">PHASE 01 DETAIL</span><div class="stitle">採用業務をまるごと代行</div></div>
+  <div class="s-body" style="padding:12px 0 0">
+    <div class="pd-2col">
+      <div><div class="pd-tag">BPO — RECRUITMENT PROCESS OUTSOURCING</div><div class="pd-title">要件を伝えるだけ、あとはお任せ。</div><div class="pd-text">求める人物像を伝えるだけ。求人原稿の作成から応募者対応、面談設定まで全プロセスを代行します。採用進捗レポートは毎週納品。</div><div style="font-size:12px;font-weight:700;margin-bottom:6px">対応業務一覧</div><ul class="pd-checks"><li>求人媒体の選定・最適な媒体ミックスの提案</li><li>求人原稿の作成・ABテスト・改善運用</li><li>応募者の一次スクリーニング（書類選考代行）</li><li>面談・面接の日程調整（候補者との直接やりとり）</li><li>候補者への合否連絡・フォローアップ</li><li>週次・月次の採用進捗レポート作成</li><li>採用ブランディングのアドバイス</li></ul><div class="pd-note"><strong>お客様がやることは「最終面接で会う」だけ。</strong>それ以外の採用実務はすべてお任せください。チャット・メールで随時連携。</div></div>
+      <div class="pd-right"><img class="pd-img" src="https://images.unsplash.com/photo-1560439514-4e9645039924?auto=format&fit=crop&w=500&q=80" alt=""><div class="pd-side-cards"><div class="pd-side-card"><div class="n">毎週</div><div class="l">進捗レポート納品</div></div><div class="pd-side-card"><div class="n">24h</div><div class="l">チャット対応</div></div><div class="pd-side-card"><div class="n">3倍</div><div class="l">応募数の平均増加率</div></div><div class="pd-side-card"><div class="n">70%</div><div class="l">採用工数の削減</div></div></div><div style="background:var(--accent-lt);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--accent);line-height:1.5;font-weight:500">対応媒体：主要求人媒体に幅広く対応（詳細はお問い合わせください）</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">08</span></div>
+</div>
+
+<!-- ===== SLIDE 9: PHASE 02 ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">PHASE 02 DETAIL</span><div class="stitle">BPO中にAI採用エージェントを構築</div></div>
+  <div class="s-body" style="padding:12px 0 0">
+    <div class="pd-2col">
+      <div><div class="pd-tag">AI AGENT — BPOと同時進行</div><div class="pd-title">丸投げしている裏側で、<br>AIが御社の採用基準を学習中。</div><div class="pd-text">BPOで実際の採用プロセスを回しながら、裏側で御社専用のAI採用エージェントを構築。お客様の追加作業はゼロです。</div><div style="font-size:12px;font-weight:700;margin-bottom:6px">AI構築プロセス</div><ul class="pd-checks"><li>月1：採用データ収集 → 採用基準のAI学習開始</li><li>月1-2：履歴書自動スクリーニングロジックの生成</li><li>月2：求人原稿自動生成テンプレートの構築</li><li>月2-3：面談日程の自動調整フロー設定</li><li>月3：候補者スコアリング・分析ダッシュボード構築</li><li>月3：テスト運用 → 精度検証 → 最終調整</li></ul><div class="pd-note"><strong>Phase 01と02は完全に同時進行。</strong>お客様側の追加作業・追加費用は一切ありません。</div></div>
+      <div class="pd-right"><img class="pd-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=500&q=80" alt=""><div style="background:var(--navy);border-radius:8px;padding:14px 16px"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:8px">AI学習の進捗イメージ</div><div style="display:flex;gap:5px;align-items:flex-end;height:60px;margin-bottom:8px"><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:25%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:40%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:55%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:65%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:78%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:85%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:90%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:93%"></div><div style="flex:1;background:var(--accent);border-radius:3px 3px 0 0;height:96%"></div><div style="flex:1;background:var(--accent-hi);border-radius:3px 3px 0 0;height:98%"></div><div style="flex:1;background:var(--accent-hi);border-radius:3px 3px 0 0;height:99%"></div><div style="flex:1;background:var(--accent-hi);border-radius:3px 3px 0 0;height:100%"></div></div><div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.35)"><span>月1</span><span>月2</span><span>月3 完了</span></div></div><div class="pd-side-cards"><div class="pd-side-card"><div class="n">0</div><div class="l">お客様側の追加作業</div></div><div class="pd-side-card"><div class="n">0円</div><div class="l">AI構築の追加費用</div></div></div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">09</span></div>
+</div>
+
+<!-- ===== SLIDE 10: PHASE 03 ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">PHASE 03 DETAIL</span><div class="stitle">AI採用エージェントを御社の資産に</div></div>
+  <div class="s-body" style="padding:12px 0 0">
+    <div class="pd-2col">
+      <div><div class="pd-tag">DELIVERY — AI採用エージェント納品</div><div class="pd-title">完成したAI採用基盤を、<br>買い取って自社の資産に。</div><div class="pd-text">3ヶ月間で構築したAI採用エージェントを御社に納品。内製化も、継続BPOも自由に選べます。</div><div style="font-size:12px;font-weight:700;margin-bottom:6px">納品物一覧</div><div class="del-grid" style="margin-top:0"><div class="del-card"><div class="del-icon">&#129302;</div><div><h4>AI採用エージェント一式</h4><p>履歴書スクリーニング・求人原稿生成・日程調整自動化</p></div></div><div class="del-card"><div class="del-icon">&#128214;</div><div><h4>業務マニュアル</h4><p>操作手順・トラブルシューティング・FAQ付き</p></div></div><div class="del-card"><div class="del-icon">&#127891;</div><div><h4>社内研修（オンライン）</h4><p>操作方法・運用フローのレクチャー（録画あり）</p></div></div><div class="del-card"><div class="del-icon">&#128737;&#65039;</div><div><h4>1ヶ月サポート</h4><p>導入後1ヶ月間は質問・調整に無料対応</p></div></div></div></div>
+      <div class="pd-right"><img class="pd-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt=""><div style="background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:8px;padding:16px"><div style="font-size:12px;font-weight:700;margin-bottom:10px">納品後の2つの選択肢</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:var(--white);border:1px solid var(--gray-line);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">A. 内製化</div><div style="font-size:10px;color:var(--sub);line-height:1.5">AI採用エージェントを自社で運用。BPOコスト完全ゼロに。</div></div><div style="background:var(--white);border:2px solid var(--accent);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">B. 継続BPO</div><div style="font-size:10px;color:var(--sub);line-height:1.5">AI化済みだから月額約半額（¥78,000〜）で継続。</div></div></div></div><div class="pd-side-cards"><div class="pd-side-card"><div class="n">買取</div><div class="l">AIエージェントの知的財産権</div></div><div class="pd-side-card"><div class="n">自由</div><div class="l">内製化/継続の選択</div></div></div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">10</span></div>
+</div>
+
+<!-- ===== SLIDE 11: COMPARISON ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">COMPARISON</span><div class="stitle">他の選択肢との違い</div></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:14px">
+    <table class="cmp-table">
+      <thead><tr><th style="width:120px"></th><th class="th-other">人材紹介</th><th class="th-other">通常のRPO</th><th class="th-other">AI採用ツール</th><th class="th-other">採用担当者を採用</th><th class="th-ours">きづけばAI採用</th></tr></thead>
+      <tbody>
+        <tr><td>採用業務の代行</td><td class="td-other">△ 紹介のみ</td><td class="td-other">&#10003; 対応</td><td class="td-other">&#10007; ツールのみ</td><td class="td-other">&#10003; 対応</td><td class="td-ours">&#10003; 全対応</td></tr>
+        <tr><td>AI導入・自動化</td><td class="td-other">&#10007;</td><td class="td-other">&#10007;</td><td class="td-other">&#10003;（高額）</td><td class="td-other">&#10007;</td><td class="td-ours">&#10003; BPO中に完了</td></tr>
+        <tr><td>社内にノウハウ蓄積</td><td class="td-other">&#10007; 外注のまま</td><td class="td-other">&#10007; 外注のまま</td><td class="td-other">&#9651; 運用課題</td><td class="td-other">&#9651; 属人化</td><td class="td-ours">&#10003; AIエージェント納品</td></tr>
+        <tr><td>月額コスト推移</td><td class="td-other">成果報酬型</td><td class="td-other">&rarr; 横ばい</td><td class="td-other">&nearr; 初期投資大</td><td class="td-other">&rarr; 横ばい</td><td class="td-ours">&searr; 3ヶ月後に半減</td></tr>
+        <tr><td>初期費用</td><td class="td-other">0円（成功報酬）</td><td class="td-other">0〜30万円</td><td class="td-other">100〜500万円</td><td class="td-other">採用費50〜100万</td><td class="td-ours">0円</td></tr>
+        <tr><td>採用1名あたりコスト</td><td class="td-other">年収の30〜35%</td><td class="td-other">15〜30万円</td><td class="td-other">ツール費+運用工数</td><td class="td-other">人件費按分</td><td class="td-ours">大幅削減</td></tr>
+        <tr><td>導入スピード</td><td class="td-other">即日</td><td class="td-other">1〜2週間</td><td class="td-other">1〜3ヶ月</td><td class="td-other">1〜6ヶ月</td><td class="td-ours">即日開始</td></tr>
+      </tbody>
+    </table>
+    <div class="cmp-note">きづけばAI採用 = 「採用BPO + AI導入」を同時に実現する唯一のサービス。社内に資産が残り、コストは下がり続ける。</div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">11</span></div>
+</div>
+
+<!-- ===== SLIDE 12: PRICING ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">PRICING</span><div class="stitle">料金プラン</div></div>
+  <div class="s-body spread" style="padding:14px 0 0;gap:12px">
+    <div class="price-row">
+      <div class="pr-card"><div class="pr-name">採用BPOのみ</div><div class="pr-price">¥148,000〜<span>/月</span></div><div class="pr-note">AI導入なし・採用代行のみ</div><ul class="pr-list"><li>求人媒体の選定・原稿作成・運用</li><li>応募者スクリーニング・書類選考</li><li>面談・面接の日程調整</li><li>候補者フォロー・合否連絡</li><li>週次・月次の採用進捗レポート</li><li>採用ブランディングアドバイス</li><li>チャットサポート（24h受付）</li></ul><div class="pr-target">対象：まずは採用負担をゼロにしたい企業</div></div>
+      <div class="pr-card feat"><div class="pr-badge">おすすめ</div><div class="pr-name">BPO + AI導入パック</div><div class="pr-price">¥398,000〜</div><div class="pr-note">BPO（¥148,000〜/月 x 3ヶ月）+ AI構築・納品</div><ul class="pr-list"><li>上記BPOの全業務（3ヶ月間）</li><li>御社専用AI採用エージェント構築・納品</li><li>履歴書自動スクリーニング</li><li>求人原稿自動生成テンプレート</li><li>面談日程自動調整フロー</li><li>業務マニュアル・運用ガイド・社内研修</li><li>AI採用エージェントの知的財産権は御社に帰属</li></ul><div class="pr-target">対象：採用の丸投げとAI化を同時に実現したい企業</div></div>
+      <div class="pr-card"><div class="pr-name">AI化後の継続BPO</div><div class="pr-price">¥78,000〜<span>/月</span></div><div class="pr-note">AI化済みだから約半額で継続</div><ul class="pr-list"><li>採用BPOと同じ業務範囲</li><li>AI自動処理 → 人がチェック</li><li>週次レポート継続納品</li><li>AI採用エージェントの継続改善</li><li>求人原稿・スクリーニング精度の最適化</li><li>いつでもAIエージェント買取に切替可</li><li>1ヶ月単位で継続・解約可（違約金なし）</li></ul><div class="pr-target">対象：AI化後も採用を任せ続けたい企業</div></div>
+    </div>
+    <div style="background:var(--gray-bg);border-radius:8px;padding:12px 20px;font-size:11px;color:var(--sub);text-align:center;line-height:1.6"><strong style="color:var(--text)">料金は採用ポジション数・応募件数・対応範囲によって変わります。</strong> まずは無料相談でお見積もりします。初期費用・違約金は一切ありません。</div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">12</span></div>
+</div>
+
+<!-- ===== SLIDE 13: COST SIMULATION ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">COST SIMULATION</span><div class="stitle">コストシミュレーション（年間比較）</div><p class="ssub">年間5名の中途採用を行う従業員20〜50名規模の企業を想定したモデルケースです。</p></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:16px">
+    <table class="sim-table">
+      <thead><tr><th>項目</th><th>人材紹介<br>（5名採用）</th><th>通常のRPO</th><th>きづけばAI採用<br>（BPO+AI導入パック）</th></tr></thead>
+      <tbody>
+        <tr><td>初期費用</td><td>0円</td><td>0〜30万円</td><td class="highlight">0円</td></tr>
+        <tr><td>月1-3のコスト</td><td>成功報酬待ち</td><td>20万円/月 x 3</td><td class="highlight">14.8万円/月 x 3</td></tr>
+        <tr><td>AI導入費用</td><td>なし（AI化されない）</td><td>なし（AI化されない）</td><td class="highlight">BPO費用に含む</td></tr>
+        <tr><td>月4-12のコスト</td><td>紹介料は採用時に発生</td><td>20万円/月 x 9</td><td class="highlight">7.8万円/月 x 9<br>（AI化後の継続BPO）</td></tr>
+        <tr><td>5名採用の紹介料</td><td>年収500万 x 35% x 5名<br>= 875万円</td><td>なし（別途媒体費）</td><td class="highlight">なし（媒体費込み）</td></tr>
+        <tr class="total"><td style="text-align:left;font-weight:900">年間総コスト</td><td>875〜1,000万円</td><td>240〜300万円</td><td class="highlight" style="font-size:16px;font-weight:900">115〜140万円</td></tr>
+      </tbody>
+    </table>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:var(--accent-lt);border-radius:10px;padding:18px 22px"><div style="font-size:22px;font-weight:900;color:var(--accent);margin-bottom:6px">年間 最大 -860万円</div><div style="font-size:12px;color:var(--sub);line-height:1.7">人材紹介と比較した場合の年間削減額。採用人数が多いほど削減効果は拡大します。</div></div>
+      <div style="background:var(--accent-lt);border-radius:10px;padding:18px 22px"><div style="font-size:22px;font-weight:900;color:var(--accent);margin-bottom:6px">通常RPO比 -50%以上</div><div style="font-size:12px;color:var(--sub);line-height:1.7">通常のRPOと比較しても、AI化後の月額が半額になるため年間で大幅に下回ります。</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">13</span></div>
+</div>
+
+<!-- ===== SLIDE 14: WHY US ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">WHY US</span><div class="stitle">きづけばAI採用が選ばれる理由</div></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:14px">
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">01</div><h4>BPO中にAI導入が<br>完了する唯一のサービス</h4><p>採用を丸投げしている間にAI採用エージェントを構築。3ヶ月後にはAI採用基盤が御社の資産に。お客様の追加作業はゼロ。</p></div>
+      <div class="why-card"><div class="why-num">02</div><h4>時間が経つほど<br>コストが下がる</h4><p>通常RPOは毎月同額。きづけばAI採用は3ヶ月後に約半額、内製化すればゼロに。AIがスクリーニング・日程調整を自動化。</p></div>
+      <div class="why-card"><div class="why-num">03</div><h4>エージェント紹介料から<br>完全に脱却できる</h4><p>年収の35%を払い続ける構造を終わらせる。AI採用エージェントがあれば、自社採用力で優秀な人材を獲得可能。</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div style="background:var(--navy);border-radius:10px;padding:22px 18px;text-align:center"><div style="font-size:26px;margin-bottom:6px">&#128200;</div><div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px">応募の質が向上</div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">AIが求人原稿を最適化し、ターゲット人材からの応募率を向上。「来る人を選ぶ」から「欲しい人が来る」へ。</div></div>
+      <div style="background:var(--navy);border-radius:10px;padding:22px 18px;text-align:center"><div style="font-size:26px;margin-bottom:6px">&#129302;</div><div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px">選考スピード3倍</div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">AIが履歴書を自動スクリーニング。日程調整も自動化。候補者の離脱を防ぎ、優秀人材を逃さない。</div></div>
+      <div style="background:var(--navy);border-radius:10px;padding:22px 18px;text-align:center"><div style="font-size:26px;margin-bottom:6px">&#9889;</div><div style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px">即日スタート可能</div><div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.6">採用要件をヒアリング後、最短即日で求人掲載・応募者対応を開始。採用の空白期間をゼロに。</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">14</span></div>
+</div>
+
+<!-- ===== SLIDE 15: USE CASE 01 ===== -->
+<div class="slide" style="padding:0;display:grid;grid-template-columns:.35fr .65fr;grid-template-rows:1fr">
+  <div style="position:relative;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,28,53,.75),rgba(13,148,136,.4))"></div>
+    <div style="position:absolute;bottom:40px;left:32px;right:32px">
+      <div style="font-size:9px;font-weight:700;color:var(--accent-hi);letter-spacing:.2em;margin-bottom:8px;font-family:'DM Sans',sans-serif">USE CASE 01</div>
+      <div style="font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--white);line-height:1.4">社長がやっている<br>採用を、まるごと<br>手放す</div>
+    </div>
+  </div>
+  <div style="padding:40px 48px 32px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+    <div style="margin-bottom:2px">
+      <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;margin-bottom:6px;font-family:'DM Sans',sans-serif">USE CASE 01</div>
+      <div style="font-size:18px;font-weight:900;line-height:1.35;margin-bottom:5px">「面接以外の採用業務で潰れる」経営者の時間を取り戻す</div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.6">採用専任者がおらず、社長やマネージャーが兼任している企業向け。採用を丸投げするだけで、本業に集中できる体制を即日構築します。</div>
+    </div>
+    <div style="background:var(--red-lt);border:1px solid #fecaca;border-radius:10px;padding:18px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:10px">BEFORE</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>月に<strong>20時間以上</strong>、応募者対応・日程調整に追われる</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>営業・開発など<strong>本業に集中できない</strong></span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>求人を出しても<strong>良い応募が来ない</strong></span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>年間<strong>240時間</strong>（約30営業日分）が採用に消える</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:var(--accent);line-height:1">&#9660;</div>
+    <div style="background:var(--accent-lt);border:1px solid #99f6e4;border-radius:10px;padding:20px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:10px">AFTER</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>採用工数が<strong>即日ゼロ</strong>に。最終面接だけでOK</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span><strong>本業に100%集中</strong>できる体制に</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span><strong>3ヶ月後にAI化完了</strong>、月額は約半額に</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>AI採用エージェントが<strong>自社資産</strong>として残る</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:auto">
+      <div style="background:var(--accent);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">20&rarr;0<span style="font-size:10px">h</span></div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">月間の採用工数</div></div>
+      <div style="background:var(--accent);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">即日</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">BPO開始可能</div></div>
+      <div style="background:var(--accent);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">3ヶ月</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">でAI化完了</div></div>
+      <div style="background:var(--accent);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">-50%</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">コスト削減率</div></div>
+    </div>
+    <div class="sf" style="padding-top:8px"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">15</span></div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 16: USE CASE 02 ===== -->
+<div class="slide" style="padding:0;display:grid;grid-template-columns:.65fr .35fr;grid-template-rows:1fr">
+  <div style="padding:40px 40px 32px 48px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+    <div style="margin-bottom:2px">
+      <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;margin-bottom:6px;font-family:'DM Sans',sans-serif">USE CASE 02</div>
+      <div style="font-size:18px;font-weight:900;line-height:1.35;margin-bottom:5px">「エージェント紹介料が高すぎる」採用コストを半分以下に</div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.6">人材紹介に依存している企業向け。年収の35%を払い続ける構造から脱却し、自社採用力を手に入れます。</div>
+    </div>
+    <div style="background:var(--red-lt);border:1px solid #fecaca;border-radius:10px;padding:18px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:10px">BEFORE</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>1名採用するたびに<strong>年収の30〜35%</strong>を支払い</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>5名採用で<strong>875万円以上</strong>のコスト</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>エージェント経由だと<strong>自社の採用力がつかない</strong></span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>紹介される候補者の<strong>質にばらつき</strong>がある</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:var(--accent);line-height:1">&#9660;</div>
+    <div style="background:var(--accent-lt);border:1px solid #99f6e4;border-radius:10px;padding:20px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:10px">AFTER</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>紹介料<strong>ゼロ</strong>。定額BPOで採用コストが予測可能に</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>AI採用エージェントで<strong>自社の採用力</strong>が身につく</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>3ヶ月後にBPO費用が<strong>約半額（¥78,000〜）</strong>に</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>年間<strong>最大860万円</strong>のコスト削減</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:auto">
+      <div style="background:var(--navy);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">0円</div><div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:3px">紹介料</div></div>
+      <div style="background:var(--navy);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">-860万</div><div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:3px">年間削減額</div></div>
+      <div style="background:var(--navy);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">自社資産</div><div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:3px">AI採用エージェント</div></div>
+      <div style="background:var(--navy);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">3ヶ月</div><div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:3px">で体制構築完了</div></div>
+    </div>
+    <div class="sf" style="padding-top:8px"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">16</span></div>
+  </div>
+  <div style="position:relative;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(225deg,rgba(11,28,53,.75),rgba(13,148,136,.4))"></div>
+    <div style="position:absolute;bottom:40px;left:32px;right:32px">
+      <div style="font-size:9px;font-weight:700;color:var(--accent-hi);letter-spacing:.2em;margin-bottom:8px;font-family:'DM Sans',sans-serif">USE CASE 02</div>
+      <div style="font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--white);line-height:1.4">エージェント依存を<br>AIで脱却する</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 17: USE CASE 03 ===== -->
+<div class="slide" style="padding:0;display:grid;grid-template-columns:.35fr .65fr;grid-template-rows:1fr">
+  <div style="position:relative;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,28,53,.75),rgba(13,148,136,.4))"></div>
+    <div style="position:absolute;bottom:40px;left:32px;right:32px">
+      <div style="font-size:9px;font-weight:700;color:var(--accent-hi);letter-spacing:.2em;margin-bottom:8px;font-family:'DM Sans',sans-serif">USE CASE 03</div>
+      <div style="font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--white);line-height:1.4">選考の70%を<br>AIで自動化する</div>
+    </div>
+  </div>
+  <div style="padding:40px 48px 32px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+    <div style="margin-bottom:2px">
+      <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;margin-bottom:6px;font-family:'DM Sans',sans-serif">USE CASE 03</div>
+      <div style="font-size:18px;font-weight:900;line-height:1.35;margin-bottom:5px">「書類選考と日程調整で1日が終わる」を解消する</div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.6">応募は来るが処理が追いつかない企業向け。スクリーニング・日程調整をAIで自動化し、人間は「会って判断する」ことだけに集中。</div>
+    </div>
+    <div style="background:var(--red-lt);border:1px solid #fecaca;border-radius:10px;padding:18px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:10px">BEFORE</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>履歴書を<strong>1件ずつ手作業で確認</strong>している</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>候補者との<strong>日程調整メールが何往復</strong>もある</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>対応が遅れて<strong>優秀な候補者が離脱</strong></span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0;font-size:15px">&#10007;</span><span>採用工数の<strong>70%が単純作業</strong>に消費</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:var(--accent);line-height:1">&#9660;</div>
+    <div style="background:var(--accent-lt);border:1px solid #99f6e4;border-radius:10px;padding:20px 24px">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:10px">AFTER</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>AIが履歴書を<strong>自動スクリーニング</strong>。秒で優先順位づけ</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>日程調整は<strong>AIが自動でメール送信・確定</strong></span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>候補者対応のスピードが<strong>3倍</strong>に。離脱率激減</span></div>
+        <div style="display:flex;gap:8px;font-size:14px;color:var(--text);line-height:1.55"><span style="color:var(--accent);font-weight:700;flex-shrink:0;font-size:15px">&#10003;</span><span>人間は<strong>「会って判断する」</strong>ことだけに集中</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:auto">
+      <div style="background:linear-gradient(135deg,var(--accent),#0f766e);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">-70%</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">選考工数の削減</div></div>
+      <div style="background:linear-gradient(135deg,var(--accent),#0f766e);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">3倍</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">選考スピード</div></div>
+      <div style="background:linear-gradient(135deg,var(--accent),#0f766e);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">自動化</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">日程調整</div></div>
+      <div style="background:linear-gradient(135deg,var(--accent),#0f766e);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1">自社資産</div><div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:3px">AI採用エージェント</div></div>
+    </div>
+    <div class="sf" style="padding-top:8px"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">17</span></div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 18: FLOW ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">HOW IT WORKS</span><div class="stitle">導入の流れ</div><p class="ssub">お申し込みから最短3ヶ月でAI採用エージェントが完成します。</p></div>
+  <div class="s-body spread" style="padding:16px 0 0;gap:16px">
+    <div class="flow-row">
+      <div class="flow-card"><div class="flow-num">1</div><h4>無料相談・お見積り</h4><p>採用要件・ポジション数をヒアリング。概算費用を即日ご案内。</p></div>
+      <div class="flow-card"><div class="flow-num">2</div><h4>NDA締結・BPO開始</h4><p>秘密保持契約締結後、採用要件を共有いただき即日開始。</p></div>
+      <div class="flow-card"><div class="flow-num">3</div><h4>BPO + AI構築（同時）</h4><p>採用代行しながら裏側でAI学習。お客様の追加作業ゼロ。</p></div>
+      <div class="flow-card"><div class="flow-num">4</div><h4>納品 or 継続BPO</h4><p>AI採用エージェントの買取 or 継続BPOを選択。いつでも切替可能。</p></div>
+    </div>
+    <div style="background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:10px;padding:20px 24px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:12px">詳細タイムライン</div>
+      <div style="display:grid;grid-template-columns:80px 1fr 1fr 1fr;gap:0;font-size:11px">
+        <div style="font-weight:700;padding:8px 0;border-bottom:1px solid var(--gray-line)"></div>
+        <div style="font-weight:700;padding:8px;border-bottom:1px solid var(--gray-line);text-align:center;color:var(--accent)">月1</div>
+        <div style="font-weight:700;padding:8px;border-bottom:1px solid var(--gray-line);text-align:center;color:var(--accent)">月2</div>
+        <div style="font-weight:700;padding:8px;border-bottom:1px solid var(--gray-line);text-align:center;color:var(--accent)">月3</div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--gray-line);font-weight:600">Phase 01</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:var(--accent-lt);text-align:center;color:var(--accent);font-weight:500;border-radius:4px 0 0 4px">採用BPO開始</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:var(--accent-lt);text-align:center;color:var(--accent);font-weight:500">採用BPO継続</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:var(--accent-lt);text-align:center;color:var(--accent);font-weight:500;border-radius:0 4px 4px 0">採用BPO完了</div>
+        <div style="padding:8px 0;border-bottom:1px solid var(--gray-line);font-weight:600">Phase 02</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:#e0f2fe;text-align:center;color:#0369a1;font-weight:500;border-radius:4px 0 0 4px">データ分析・学習</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:#e0f2fe;text-align:center;color:#0369a1;font-weight:500">AI構築・最適化</div>
+        <div style="padding:8px;border-bottom:1px solid var(--gray-line);background:#e0f2fe;text-align:center;color:#0369a1;font-weight:500;border-radius:0 4px 4px 0">テスト・調整</div>
+        <div style="padding:8px 0;font-weight:600">Phase 03</div>
+        <div style="padding:8px;color:var(--muted);text-align:center">&mdash;</div>
+        <div style="padding:8px;color:var(--muted);text-align:center">&mdash;</div>
+        <div style="padding:8px;background:var(--green-lt);text-align:center;color:var(--green);font-weight:600;border-radius:4px">納品・研修</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">18</span></div>
+</div>
+
+<!-- ===== SLIDE 19: FAQ ===== -->
+<div class="slide">
+  <div class="s-head"><span class="tag">FAQ</span><div class="stitle">よくある質問</div></div>
+  <div class="s-body" style="padding:16px 0 0">
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-q">Q. 本当に3ヶ月でAI化できるのですか？</div><div class="faq-a">はい。BPO期間中に御社の採用データをAIが学習し、最適なエージェントを構築します。ほとんどのケースで3ヶ月以内に完了しています。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. AI化後、自社で運用できるか不安です</div><div class="faq-a">AI採用エージェントは「誰でも使える」レベルまで最適化。操作マニュアル・社内研修・録画も含まれ、導入後1ヶ月のサポート付きです。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. 今使っている求人媒体はそのまま使えますか？</div><div class="faq-a">はい。主要な求人媒体に幅広く対応しています。現在ご利用中の媒体をそのまま継続利用できます。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. 既存のATSとの連携は可能ですか？</div><div class="faq-a">主要なATSに対応しています。お使いのシステムとの連携方法は、無料相談時にご確認いただけます。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. 最低契約期間・違約金はありますか？</div><div class="faq-a">BPO+AI導入パックは3ヶ月が基本。継続BPOは1ヶ月単位で継続・解約が可能。違約金は一切ありません。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. 最終面接以外の判断も任せられますか？</div><div class="faq-a">書類選考の基準は御社と擦り合わせの上、代行します。最終的な採用判断は必ず御社が行います。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. 内製化と継続BPO、どちらがおすすめ？</div><div class="faq-a">採用担当者がいる→内製化。採用専任者がいない→継続BPO。無料相談で最適なプランをご提案します。</div></div>
+      <div class="faq-item"><div class="faq-q">Q. どんな規模の会社が対象ですか？</div><div class="faq-a">従業員10〜100名程度の中小企業が中心。年間3〜20名程度の採用を行う企業が最も効果を発揮するゾーンです。</div></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">19</span></div>
+</div>
+
+<!-- ===== SLIDE 20: SECURITY + CTA ===== -->
+<div class="slide slide-dark">
+  <div class="s-head"><span class="tag">SECURITY & CONTACT</span><div class="stitle" style="font-size:26px">安全管理体制 & お問い合わせ</div></div>
+  <div class="s-body spread" style="padding:12px 0 0;gap:14px">
+    <div class="sec-grid">
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#128274;</span><h4 style="color:var(--white)">SSL/TLS暗号化</h4><p style="color:rgba(255,255,255,.45)">すべてのデータ通信を暗号化。通信傍受を防止。</p></div>
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#128737;&#65039;</span><h4 style="color:var(--white)">アクセス権限管理</h4><p style="color:rgba(255,255,255,.45)">担当者以外は候補者データにアクセス不可。</p></div>
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#127471;&#127477;</span><h4 style="color:var(--white)">国内サーバー保管</h4><p style="color:rgba(255,255,255,.45)">全データを国内サーバーに保管。個人情報保護法に準拠。</p></div>
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#128221;</span><h4 style="color:var(--white)">NDA締結</h4><p style="color:rgba(255,255,255,.45)">サービス開始前に秘密保持契約を締結。</p></div>
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#9989;</span><h4 style="color:var(--white)">採用判断は御社</h4><p style="color:rgba(255,255,255,.45)">最終的な採用・不採用の判断は必ず御社が行います。</p></div>
+      <div class="sec-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)"><span class="sec-icon">&#128260;</span><h4 style="color:var(--white)">データ返却・削除</h4><p style="color:rgba(255,255,255,.45)">終了後はご指示に従い候補者データを返却/削除。</p></div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:28px 36px;text-align:center">
+      <div style="font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--white);margin-bottom:8px">採用を丸投げしたら、気づけばAI化、完了。</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px">まずは無料相談から。採用要件・対応可否・概算費用をご案内します。しつこい営業は一切しません。</div>
+      <div style="display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 32px;margin-bottom:12px"><div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:2px">メール</div><div style="font-size:18px;font-weight:700;color:var(--white);font-family:'DM Sans',sans-serif">contact@bewibe.com</div></div>
+      <div style="display:flex;gap:18px;justify-content:center;font-size:11px;color:rgba(255,255,255,.3)"><span>初期費用なし</span><span>3ヶ月でAI化</span><span>違約金なし</span><span>NDA締結</span><span>しつこい営業なし</span></div>
+    </div>
+  </div>
+  <div class="sf"><span class="logo-sm" style="color:var(--accent-hi)">きづけば<em>AI</em>採用</span><span class="pg" style="font-size:10px;color:rgba(255,255,255,.25)">株式会社BEWIBE — contact@bewibe.com</span></div>
+</div>
+
+</body></html>
