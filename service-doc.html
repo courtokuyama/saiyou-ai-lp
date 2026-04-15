@@ -59,7 +59,7 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;color:var(--text);backgroun
 .cover-tag{font-size:10px;font-weight:600;color:var(--accent-hi);letter-spacing:.22em;margin-bottom:14px}
 .cover-title{font-size:44px;font-weight:900;color:var(--white);line-height:1.3;margin-bottom:18px}
 .cover-desc{font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;max-width:520px}
-.cover-stats{position:absolute;bottom:56px;right:0;display:flex;gap:14px;z-index:1}
+.cover-stats{position:absolute;bottom:56px;right:80px;display:flex;gap:14px;z-index:1}
 .cover-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 22px;text-align:center;min-width:120px}
 .cover-stat strong{font-size:22px;font-weight:900;color:var(--white);display:block;font-family:'DM Sans',sans-serif}
 .cover-stat span{font-size:10px;color:rgba(255,255,255,.4)}
@@ -327,7 +327,7 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;color:var(--text);backgroun
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <img class="about-img" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80" alt="" style="height:210px">
+        <img class="about-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80" alt="" style="height:210px">
         <div style="background:var(--navy);border-radius:10px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">¥148,000〜</div><div style="font-size:9px;color:rgba(255,255,255,.4)">月額BPO費用</div></div>
           <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--white);font-family:'DM Sans',sans-serif">3ヶ月</div><div style="font-size:9px;color:rgba(255,255,255,.4)">AI化完了まで</div></div>
@@ -430,8 +430,33 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;color:var(--text);backgroun
   <div class="s-head"><span class="tag">PHASE 03 DETAIL</span><div class="stitle">AI採用エージェントを御社の資産に</div></div>
   <div class="s-body" style="padding:12px 0 0">
     <div class="pd-2col">
-      <div><div class="pd-tag">DELIVERY — AI採用エージェント納品</div><div class="pd-title">完成したAI採用基盤を、<br>買い取って自社の資産に。</div><div class="pd-text">3ヶ月間で構築したAI採用エージェントを御社に納品。内製化も、継続BPOも自由に選べます。</div><div style="font-size:12px;font-weight:700;margin-bottom:6px">納品物一覧</div><div class="del-grid" style="margin-top:0"><div class="del-card"><div class="del-icon">&#129302;</div><div><h4>AI採用エージェント一式</h4><p>履歴書スクリーニング・求人原稿生成・日程調整自動化</p></div></div><div class="del-card"><div class="del-icon">&#128214;</div><div><h4>業務マニュアル</h4><p>操作手順・トラブルシューティング・FAQ付き</p></div></div><div class="del-card"><div class="del-icon">&#127891;</div><div><h4>社内研修（オンライン）</h4><p>操作方法・運用フローのレクチャー（録画あり）</p></div></div><div class="del-card"><div class="del-icon">&#128737;&#65039;</div><div><h4>1ヶ月サポート</h4><p>導入後1ヶ月間は質問・調整に無料対応</p></div></div></div></div>
-      <div class="pd-right"><img class="pd-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt=""><div style="background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:8px;padding:16px"><div style="font-size:12px;font-weight:700;margin-bottom:10px">納品後の2つの選択肢</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:var(--white);border:1px solid var(--gray-line);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">A. 内製化</div><div style="font-size:10px;color:var(--sub);line-height:1.5">AI採用エージェントを自社で運用。BPOコスト完全ゼロに。</div></div><div style="background:var(--white);border:2px solid var(--accent);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">B. 継続BPO</div><div style="font-size:10px;color:var(--sub);line-height:1.5">AI化済みだから月額約半額（¥78,000〜）で継続。</div></div></div></div><div class="pd-side-cards"><div class="pd-side-card"><div class="n">買取</div><div class="l">AIエージェントの知的財産権</div></div><div class="pd-side-card"><div class="n">自由</div><div class="l">内製化/継続の選択</div></div></div></div>
+      <div>
+        <div class="pd-tag">DELIVERY — AI採用エージェント納品</div>
+        <div class="pd-title">完成したAI採用基盤を、<br>買い取って自社の資産に。</div>
+        <div class="pd-text">3ヶ月間で構築したAI採用エージェントを御社に納品。内製化も、継続BPOも自由に選べます。</div>
+        <ul class="pd-checks">
+          <li>AI採用エージェント一式（スクリーニング・原稿生成・日程調整）</li>
+          <li>業務マニュアル・運用ガイド付き</li>
+          <li>社内研修（オンライン・録画あり）</li>
+          <li>導入後1ヶ月サポート</li>
+          <li>AIエージェントの知的財産権は御社に帰属</li>
+        </ul>
+        <div class="pd-note"><strong>継続BPOを選んだ場合:</strong> AI化済みのため月額約半額（¥78,000〜）で同じ業務範囲を継続可能。いつでもAI買取に切替可。</div>
+      </div>
+      <div class="pd-right">
+        <img class="pd-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt="">
+        <div style="background:var(--gray-bg);border:1px solid var(--gray-line);border-radius:8px;padding:16px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:10px">納品後の2つの選択肢</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:var(--white);border:1px solid var(--gray-line);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">A. 内製化</div><div style="font-size:10px;color:var(--sub);line-height:1.5">自社で運用。BPOコスト完全ゼロに。</div></div>
+            <div style="background:var(--white);border:2px solid var(--accent);border-radius:6px;padding:12px;text-align:center"><div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">B. 継続BPO</div><div style="font-size:10px;color:var(--sub);line-height:1.5">月額約半額（¥78,000〜）で継続。</div></div>
+          </div>
+        </div>
+        <div class="pd-side-cards">
+          <div class="pd-side-card"><div class="n">買取</div><div class="l">知的財産権は御社に</div></div>
+          <div class="pd-side-card"><div class="n">自由</div><div class="l">内製化/継続の選択</div></div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="sf"><span class="logo-sm">きづけば<em>AI</em>採用</span><span class="pg">10</span></div>
